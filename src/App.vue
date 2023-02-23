@@ -5,7 +5,7 @@
 
     </div>
     <div class="column is-three-quarter">
-      <FormularioTimer/>
+      <Formulario/>
     </div>
   </main>
 </template>
@@ -13,14 +13,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import BarraLateral from './components/BarraLateral.vue';
-import FormularioTimer from './components/FormularioTimer.vue'
+import Formulario from './components/Formulario.vue'
 
 
 export default defineComponent({
   name: 'App',
   components: {
     BarraLateral,
-    FormularioTimer,
+    Formulario,
 
   }
 });
