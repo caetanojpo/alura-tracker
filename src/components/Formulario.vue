@@ -64,6 +64,7 @@ export default defineComponent({
         projeto: this.projetos.find((proj) => proj.id == this.idProjeto),
       });
       this.descricao = "";
+      this.idProjeto = "";
     },
   },
   setup() {

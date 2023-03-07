@@ -17,3 +17,5 @@ export default defineComponent({
   padding: 1.5rem;
 }
 </style>
+
+<style></style>
