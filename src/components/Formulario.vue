@@ -63,15 +63,6 @@ export default defineComponent({
   mixins: [notificacaoMixin],
   methods: {
     finalizarTarefa(tempoDecorrido: number): void {
-      const projeto = this.projetos.find((p) => p.id == this.idProjeto);
-      if (!projeto) {
-        this.notificar(
-          TipoNotificacao.FALHA,
-          "Projeto não selecionado",
-          "Você deve selecionar o projeto antes de salvar a tarefa"
-        );
-        return;
-      }
       this.$emit("aoSalvarTarefa", {
         duracaoEmSegundos: tempoDecorrido,
         descricao: this.descricao,
