@@ -42,6 +42,8 @@ import Temporizador from "./Temporizador.vue";
 import { useStore } from "vuex";
 
 import { key } from "@/store";
+import { TipoNotificacao } from "@/interfaces/INotificacao";
+import { NOTIFICAR } from "@/store/tipo-mutacoes";
 
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
@@ -58,6 +60,15 @@ export default defineComponent({
   },
   methods: {
     finalizarTarefa(tempoDecorrido: number): void {
+      const projeto = this.projetos.find((p) => p.id == this.idProjeto);
+      if (!projeto) {
+        this.store.commit(NOTIFICAR, {
+          titulo: "Ops!",
+          texto: "Selecione um projeto antes de finalizar a tarefa!",
+          tipo: TipoNotificacao.FALHA,
+        });
+        return;
+      }
       this.$emit("aoSalvarTarefa", {
         duracaoEmSegundos: tempoDecorrido,
         descricao: this.descricao,
@@ -71,6 +82,7 @@ export default defineComponent({
     const store = useStore(key);
     return {
       projetos: computed(() => store.state.projetos),
+      store,
     };
   },
 });
