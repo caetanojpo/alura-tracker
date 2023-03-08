@@ -45,6 +45,8 @@ import { key } from "@/store";
 import { TipoNotificacao } from "@/interfaces/INotificacao";
 import { NOTIFICAR } from "@/store/tipo-mutacoes";
 
+import { notificacaoMixin } from "@/mixins/notificar";
+
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Formulario",
@@ -58,15 +60,16 @@ export default defineComponent({
       idProjeto: "",
     };
   },
+  mixins: [notificacaoMixin],
   methods: {
     finalizarTarefa(tempoDecorrido: number): void {
       const projeto = this.projetos.find((p) => p.id == this.idProjeto);
       if (!projeto) {
-        this.store.commit(NOTIFICAR, {
-          titulo: "Ops!",
-          texto: "Selecione um projeto antes de finalizar a tarefa!",
-          tipo: TipoNotificacao.FALHA,
-        });
+        this.notificar(
+          TipoNotificacao.FALHA,
+          "Projeto não selecionado",
+          "Você deve selecionar o projeto antes de salvar a tarefa"
+        );
         return;
       }
       this.$emit("aoSalvarTarefa", {
@@ -82,7 +85,6 @@ export default defineComponent({
     const store = useStore(key);
     return {
       projetos: computed(() => store.state.projetos),
-      store,
     };
   },
 });

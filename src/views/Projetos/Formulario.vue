@@ -21,12 +21,10 @@
 import { useStore } from "@/store";
 import { defineComponent } from "vue";
 
-import {
-  ALTERA_PROJETO,
-  ADICIONA_PROJETO,
-  NOTIFICAR,
-} from "@/store/tipo-mutacoes";
+import { ALTERA_PROJETO, ADICIONA_PROJETO } from "@/store/tipo-mutacoes";
 import { TipoNotificacao } from "@/interfaces/INotificacao";
+
+import { notificacaoMixin } from "@/mixins/notificar";
 
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
@@ -49,6 +47,7 @@ export default defineComponent({
       nomeDoProjeto: "",
     };
   },
+  mixins: [notificacaoMixin],
   methods: {
     salvar() {
       if (this.id) {
@@ -62,11 +61,11 @@ export default defineComponent({
         this.store.commit(ADICIONA_PROJETO, this.nomeDoProjeto);
       }
       this.nomeDoProjeto = "";
-      this.store.commit(NOTIFICAR, {
-        titulo: "Novo projeto foi salvo",
-        texto: "Seu projeto já está disponível!",
-        tipo: TipoNotificacao.SUCESSO,
-      });
+      this.notificar(
+        TipoNotificacao.SUCESSO,
+        "Cadastro de projeto",
+        "Muito bem! Seu projeto foi cadastrado com sucesso"
+      );
       this.$router.push("/projetos");
     },
   },
