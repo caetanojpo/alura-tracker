@@ -31,6 +31,15 @@
         "id": 3
       },
       "id": 2
+    },
+    {
+      "duracaoEmSegundos": 4,
+      "descricao": "Teste",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker 3.0"
+      },
+      "id": 3
     }
   ]
 }
