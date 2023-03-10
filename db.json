@@ -7,6 +7,30 @@
     {
       "nome": "React",
       "id": 2
+    },
+    {
+      "nome": "Vuex",
+      "id": 3
+    }
+  ],
+  "tarefas": [
+    {
+      "id": 1,
+      "duracaoEmSegundos": 120,
+      "descricao": "Configuração do Local",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker 3.0"
+      }
+    },
+    {
+      "duracaoEmSegundos": 54,
+      "descricao": "API Rest com Vuex",
+      "projeto": {
+        "nome": "Vuex",
+        "id": 3
+      },
+      "id": 2
     }
   ]
 }

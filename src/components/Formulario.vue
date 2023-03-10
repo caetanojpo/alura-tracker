@@ -42,8 +42,6 @@ import Temporizador from "./Temporizador.vue";
 import { useStore } from "vuex";
 
 import { key } from "@/store";
-import { TipoNotificacao } from "@/interfaces/INotificacao";
-import { NOTIFICAR } from "@/store/tipo-mutacoes";
 
 import { notificacaoMixin } from "@/mixins/notificar";
 
@@ -75,7 +73,7 @@ export default defineComponent({
   setup() {
     const store = useStore(key);
     return {
-      projetos: computed(() => store.state.projetos),
+      projetos: computed(() => store.state.projeto.projetos),
     };
   },
 });
